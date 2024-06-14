@@ -1,6 +1,5 @@
 using ExampleTest2.Data;
 using ExampleTest2.Services;
-using os.Services;
 using Microsoft.EntityFrameworkCore;
 
 

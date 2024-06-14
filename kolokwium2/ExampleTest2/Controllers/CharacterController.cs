@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using ExampleTest2.Services;
+﻿using ExampleTest2.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace os.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

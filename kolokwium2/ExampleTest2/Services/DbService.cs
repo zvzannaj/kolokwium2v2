@@ -4,8 +4,6 @@ using ExampleTest2.Models;
 using ExampleTest2.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace os.Services;
-
 public class DbService : IDbService
 {
     private readonly DatabaseContext _context;
@@ -25,8 +23,8 @@ public class DbService : IDbService
             .Where(c => c.Id == id)
             .Select(c=> new CharacterDTO
             {
-              FirstName=c.FirstName,
-              LastName=c.LastName,
+              FirstName = c.FirstName,
+              LastName = c.LastName,
               CurrentWeight = c.CurrentWeight,
               MaxWeight = c.MaxWeight,
               BackpackItems = c.Backpacks.Select(b=> new BackpackDTO
@@ -74,13 +72,15 @@ public class DbService : IDbService
 
         var result = await _context.Backpacks
             .Where(b => b.CharacterId == character.Id && itemIds.Contains(b.ItemId))
-            .Select(b => new AddToBackpackDTO{ Amount=b.Amount, IdItem=b.ItemId, IdCharacter = b.CharacterId })
+            .Select(b => new AddToBackpackDTO{ Amount = b.Amount, IdItem = b.ItemId, IdCharacter = b.CharacterId })
             .ToListAsync();
         return result;
     }
-    
+
     public async Task<Characters> DoesCharacterExsist(int id)
-    { return await _context.Characters.FirstOrDefaultAsync(c => c.Id == id); }
+    {
+        return await _context.Characters.FirstOrDefaultAsync(c => c.Id == id);
+    }
 
     public async Task<ICollection<Items>> ItemsToList(List<int> ids)
     {
